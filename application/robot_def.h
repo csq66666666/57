@@ -16,14 +16,14 @@
 #include "master_process.h"
 #include "self_controller.h"
 #include "stdint.h"
-
 /* 开发板类型定义,烧录时注意不要弄错对应功能;修改定义后需要重新编译,只能存在一个定义! */
 // #define ONE_BOARD // 单板控制整车
-// #define CHASSIS_BOARD // 底盘板
-#define GIMBAL_BOARD // 云台板
+#define CHASSIS_BOARD // 底盘板
+// #define GIMBAL_BOARD // 云台板
 
 #define VISION_USE_VCP // 使用虚拟串口发送视觉数据
 // #define VISION_USE_UART // 使用串口发送视觉数据
+#define USE_VT13   // 使用VT13(图传接收端)遥控器进行控制
 
 /* 机器人重要参数定义,注意根据不同机器人进行修改,浮点数需要以.0或f结尾,无符号以u结尾 */
 // 机械臂参数

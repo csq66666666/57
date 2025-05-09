@@ -46,7 +46,9 @@ static Chassis_Upload_Data_s chassis_feedback_data;                             
 static referee_info_t *referee_data;                                                              // 用于获取裁判系统的数据
 static Referee_Interactive_info_t ui_data;                                                        // UI数据，将底盘中的数据传入此结构体的对应变量中，UI会自动检测是否变化，对应显示UI
 static DJIMotorInstance *motor_lf, *motor_rf, *motor_lb, *motor_rb, *motor_lift_l, *motor_lift_r; // left right forward back
+#ifdef USE_DT7
 static Self_Cntlr_s *self_cntlr_data;
+#endif
 static ElecSwitchInstance *valve_1, *valve_2, *valve_3, *valve_4, *pump;    // 4个继电器加2个霍尔开关
 static float low_pass_chassis_vx, low_pass_chassis_vy, low_pass_chassis_vz; // 低通滤波后的底盘控制命令
 static float vofa_data[8];
@@ -102,7 +104,10 @@ void ChassisInit()
     motor_rb = DJIMotorInit(&chassis_motor_config);
 
     // referee_data = UITaskInit(&huart1, &ui_data); // 裁判系统初始化,会同时初始化UI（注意自定义控制器使用了学生串口huart6，我们的裁判系统接口为huart1）
+
+#ifdef USE_DT7
     self_cntlr_data = SelfCntlrInit(&huart1);
+#endif
     //
     // 电磁阀控制端口初始化
     ElecSwitch_Init_Config_s valve_init_cofig = {
@@ -188,6 +193,7 @@ static void ChassisOutput()
     DJIMotorSetRef(motor_rb, vt_rb);
 }
 
+#ifdef USE_DT7
 static void FeedbackUpdate()
 {
     chassis_feedback_data.ctrlr_data.yaw = 4.5f * self_cntlr_data->yaw;
@@ -196,6 +202,7 @@ static void FeedbackUpdate()
     chassis_feedback_data.ctrlr_data.push_dist = self_cntlr_data->push_dist;
     chassis_feedback_data.ctrlr_data.traverse_dist = self_cntlr_data->traverse_dist;
 }
+#endif
 
 /* static void AccelLimit(float *velocity, float *measure, float max_accel)
 {
@@ -320,17 +327,14 @@ static void ChassisModeControl()
         DJIMotorStop(motor_rb);
         break;
     case CHASSIS_NORMAL: // 正常行进
-        cos_theta = -1;
+        cos_theta = 1;
         sin_theta = 0;
         break;
     case CHASSIS_MINING: // 取矿行进
         cos_theta = 0;
         sin_theta = -1;
         break;
-    case CHASSIS_CHARGE: // 补弹行进
-        cos_theta = 0;
-        sin_theta = 1;
-        break;
+
     case CHASSIS_NO_MOVE: // 锁定底盘
         chassis_cmd_recv.vx = 0;
         chassis_cmd_recv.vy = 0;
@@ -378,7 +382,7 @@ void ChassisTask()
     // 根据裁判系统的反馈数据和电容数据对输出限幅并设定闭环参考值
     ChassisOutput();
 
-    FeedbackUpdate();
+    // FeedbackUpdate();
 
     // 用于将收到的ui数据更新
     // ui_feedup();
