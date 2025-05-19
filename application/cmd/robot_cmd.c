@@ -315,6 +315,12 @@ static void RemoteControlSet()
         if (rc_data[TEMP].rc.trigger_button_count % 2 == 1) // 扳机键按下奇数次进入自定义控制器模式
         {
             upper_cmd_send.upper_mode = UPPER_EXCHANGE;
+            chassis_cmd_send.chassis_mode = CHASSIS_MINING;
+            upper_cmd_send.ctrlr_data.pitch = self_ctrl_data->pitch;
+            upper_cmd_send.ctrlr_data.yaw = self_ctrl_data->yaw;
+            upper_cmd_send.ctrlr_data.roll = self_ctrl_data->roll;
+            upper_cmd_send.ctrlr_data.push_dist = self_ctrl_data->push_dist;
+            upper_cmd_send.ctrlr_data.traverse_dist = self_ctrl_data->traverse_dist;
             upper_cmd_send.joint_data.lift_dist += 0.002 * (float)rc_data[TEMP].rc.rocker_l1;
             upper_cmd_send.joint_data.yaw += 0.001f * (float)rc_data[TEMP].rc.rocker_l_;
             upper_cmd_send.joint_data.push_dist += 0.001 * (float)rc_data[TEMP].rc.rocker_r1;
@@ -411,8 +417,8 @@ static void MouseKeyControlSet()
         }
 
         upper_cmd_send.joint_data.pitch += -0.005f * (float)rc_data[TEMP].mouse.y;
-        // upper_cmd_send.joint_data.yaw += 0.01f * (float)rc_data[TEMP].mouse.x;
-        upper_cmd_send.joint_data.yaw += (0.5f * (float)rc_data[TEMP].key[KEY_PRESS_WITH_CTRL].z - 0.5f * (float)rc_data[TEMP].key[KEY_PRESS_WITH_CTRL].x);
+      upper_cmd_send.joint_data.yaw +=   ((float)rc_data[TEMP].mouse.press_l-(float)rc_data[TEMP].mouse.press_r);
+        // upper_cmd_send.joint_data.yaw += (0.5f * (float)rc_data[TEMP].key[KEY_PRESS_WITH_CTRL].z - 0.5f * (float)rc_data[TEMP].key[KEY_PRESS_WITH_CTRL].x);
     }
     if (chassis_cmd_send.chassis_mode == CHASSIS_CHARGE)
     {

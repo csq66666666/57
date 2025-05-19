@@ -18,8 +18,8 @@
 #include "stdint.h"
 /* 开发板类型定义,烧录时注意不要弄错对应功能;修改定义后需要重新编译,只能存在一个定义! */
 // #define ONE_BOARD // 单板控制整车
-#define CHASSIS_BOARD // 底盘板
-// #define GIMBAL_BOARD // 云台板
+// #define CHASSIS_BOARD // 底盘板
+#define GIMBAL_BOARD // 云台板
 
 #define VISION_USE_VCP // 使用虚拟串口发送视觉数据
 // #define VISION_USE_UART // 使用串口发送视觉数据
@@ -58,7 +58,7 @@
 #define PUSH_GEAR_R 13.945f                                           // 前伸齿轮半径
 #define TRAVERSE_GEAR_R 10.13f                                        // 横移齿轮半径
 #define PUSH_MAX_DIST 250.0f                                          // 前伸最大距离 250
-#define LIFT_MAX_DIST 375.0f                                          // 抬升最大距离
+#define LIFT_MAX_DIST 380.0f                                          // 抬升最大距离
 #define TRAVERSE_MAX_DIST 360.0f                                      // 横移最大距离
 #define LIFT_DIST_2_ANGLE (360.0f * 27.0f / (2.0f * PI * 23.3f))      // 抬升距离转电机角度
 #define PUSH_DIST_2_ANGLE (360.0f * 19.0f / (2.0f * PI * 13.945f))    // 前伸距离转电机角度

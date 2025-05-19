@@ -133,12 +133,12 @@ void UpperInit()
     upper_motor_config.controller_param_init_config.angle_PID.Ki = 0;
     upper_motor_config.controller_param_init_config.angle_PID.Kd = 0;
     upper_motor_config.controller_param_init_config.angle_PID.IntegralLimit = 2000;
-    upper_motor_config.controller_param_init_config.angle_PID.MaxOut = 10000;
+    upper_motor_config.controller_param_init_config.angle_PID.MaxOut = 6000;
     upper_motor_config.controller_param_init_config.speed_PID.Kp = 3;
     upper_motor_config.controller_param_init_config.speed_PID.Ki = 0;
     upper_motor_config.controller_param_init_config.speed_PID.Kd = 0;
     upper_motor_config.controller_param_init_config.speed_PID.IntegralLimit = 2000;
-    upper_motor_config.controller_param_init_config.speed_PID.MaxOut = 15000;
+    upper_motor_config.controller_param_init_config.speed_PID.MaxOut = 6000;
     upper_motor_config.controller_setting_init_config.motor_reverse_flag = MOTOR_DIRECTION_REVERSE;
     upper_motor_config.motor_type = M2006;
     upper_differ_motor_l = DJIMotorInit(&upper_motor_config);
@@ -815,7 +815,7 @@ static void UpperGlodMiningMode()
     //     upper_solve.traverse_dist = upper_cmd_recv.joint_data.traverse_dist;
     //     upper_solve.push_dist = upper_cmd_recv.joint_data.push_dist;
     //     upper_solve.lift_dist = upper_cmd_recv.joint_data.lift_dist;
-        
+
     //     if (upper_cmd_recv.cfm_flag == 1)
     //     {
     //         upper_solve.pitch_differ = 0;
@@ -866,7 +866,7 @@ static void UpperGlodMiningMode()
 
     if (upper_cmd_recv.stop_flag == 0)
     {
-        if (action_step != 0 )
+        if (action_step != 0)
         {
             ActionFinishJudge(action_step, cali_time, 1, 100);
         }
@@ -1242,7 +1242,7 @@ static void UpperExchangeMode()
         upper_solve.pitch = upper_cmd_recv.ctrlr_data.yaw - 90.0f;
     else if (upper_cmd_recv.ctrlr_data.yaw + 90.0f < -EPS)
         upper_solve.pitch = upper_cmd_recv.ctrlr_data.yaw + 90.0f;
-    upper_solve.roll_differ = upper_cmd_recv.ctrlr_data.roll;
+    upper_solve.roll_differ = -upper_cmd_recv.ctrlr_data.roll;
     upper_solve.lift_dist = upper_cmd_recv.joint_data.lift_dist;
     upper_solve.push_dist = upper_cmd_recv.ctrlr_data.push_dist;
     upper_solve.traverse_dist = upper_cmd_recv.ctrlr_data.traverse_dist;

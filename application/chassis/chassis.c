@@ -103,7 +103,7 @@ void ChassisInit()
     chassis_motor_config.controller_setting_init_config.motor_reverse_flag = MOTOR_DIRECTION_REVERSE;
     motor_rb = DJIMotorInit(&chassis_motor_config);
 
-    // referee_data = UITaskInit(&huart1, &ui_data); // 裁判系统初始化,会同时初始化UI（注意自定义控制器使用了学生串口huart6，我们的裁判系统接口为huart1）
+    // referee_data = UITaskInit(&huart6, &ui_data); // 裁判系统初始化,会同时初始化UI（注意自定义控制器使用了学生串口huart6，我们的裁判系统接口为huart1）
 
 #ifdef USE_DT7
     self_cntlr_data = SelfCntlrInit(&huart1);

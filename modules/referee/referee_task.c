@@ -223,46 +223,46 @@ static void MyUIRefresh(referee_info_t *referee_recv_info, Referee_Interactive_i
     //  pump
     if (_Interactive_data->Referee_Interactive_Flag.pump_flag == 1)
     {
-        if (_Interactive_data->pump_mode & VAVLVE_ARM)
-        {
-            // code
-        }
-        else
-        {
-            // code
-        }
-        if (_Interactive_data->pump_mode & VAVLVE_T1)
-        {
-            // code
-        }
-        else
-        {
-            // code
-        }
-        if (_Interactive_data->pump_mode & VAVLVE_T2)
-        {
-            // code
-        }
-        else
-        {
-            // code
-        }
-        if (_Interactive_data->pump_mode & VAVLVE_T3)
-        {
-            // code
-        }
-        else
-        {
-            // code
-        }
-        if (_Interactive_data->pump_mode)
-        {
-            // code
-        }
-        else
-        {
-            // code
-        }
+        // if (_Interactive_data->pump_mode & VAVLVE_ARM)
+        // {
+        //     // code
+        // }
+        // else
+        // {
+        //     // code
+        // }
+        // if (_Interactive_data->pump_mode & VAVLVE_T1)
+        // {
+        //     // code
+        // }
+        // else
+        // {
+        //     // code
+        // }
+        // if (_Interactive_data->pump_mode & VAVLVE_T2)
+        // {
+        //     // code
+        // }
+        // else
+        // {
+        //     // code
+        // }
+        // if (_Interactive_data->pump_mode & VAVLVE_T3)
+        // {
+        //     // code
+        // }
+        // else
+        // {
+        //     // code
+        // }
+        // if (_Interactive_data->pump_mode)
+        // {
+        //     // code
+        // }
+        // else
+        // {
+        //     // code
+        // }
 
         switch (_Interactive_data->pump_mode)
         {
