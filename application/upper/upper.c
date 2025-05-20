@@ -941,8 +941,8 @@ static void UpperGroundMiningMode()
     {
     case 1:
         // 第一步：展开机械臂
-        upper_solve.lift_dist = 130.0f;
-        upper_solve.push_dist = 100.0f;
+        upper_solve.lift_dist = 112.0f;
+        upper_solve.push_dist = 112.0f;
         upper_solve.traverse_dist = TRAVERSE_MAX_DIST / 2;
         upper_solve.yaw = 0;
         upper_solve.pitch = -85;
@@ -953,11 +953,11 @@ static void UpperGroundMiningMode()
         upper_solve.pitch_differ = upper_cmd_recv.joint_data.pitch_differ;
         if (upper_cmd_recv.cfm_flag == 1)
             // 第二步 抓取矿石：lift向下、吸住矿石
-            upper_solve.lift_dist = 32.0f;
+            upper_solve.lift_dist = 50.0f;
         break;
     case 3:
         // 第三步：吸稳矿石后升起
-        upper_solve.lift_dist = 200.0f;
+        upper_solve.lift_dist = 212.0f;
         break;
     default:
         action_step = 0;
